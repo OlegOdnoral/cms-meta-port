@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "partners",
+  "info": {
+    "singularName": "partner",
+    "pluralName": "partners",
+    "displayName": "partner",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "partner_id": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "partner_config": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::partner-config.partner-config",
+      "inversedBy": "partner"
+    },
+    "parnter_localization": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::parnter-localization.parnter-localization",
+      "inversedBy": "partner"
+    },
+    "admin_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "admin::user"
+    }
+  }
+}

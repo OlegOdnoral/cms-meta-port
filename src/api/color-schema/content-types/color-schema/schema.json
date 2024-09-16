@@ -19,11 +19,11 @@
     "bg_color": {
       "type": "string"
     },
-    "pertners_config": {
+    "pertner_config": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::partner-config.partner-config",
-      "mappedBy": "color_schema"
+      "inversedBy": "color_schema"
     }
   }
 }

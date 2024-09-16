@@ -4,7 +4,7 @@
   "info": {
     "singularName": "partner-config",
     "pluralName": "partner-configs",
-    "displayName": "pertners_configs",
+    "displayName": "pertner_configs",
     "description": ""
   },
   "options": {
@@ -18,23 +18,31 @@
     "header_img": {
       "type": "string"
     },
-    "partner_id": {
-      "type": "string"
-    },
     "is_active": {
       "type": "boolean"
     },
     "budget": {
       "type": "string"
     },
+    "avatar": {
+      "type": "string"
+    },
+    "available_localizations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::available-localization.available-localization"
+    },
     "color_schema": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::color-schema.color-schema",
-      "inversedBy": "pertners_config"
+      "mappedBy": "pertner_config"
     },
-    "avatar": {
-      "type": "string"
+    "partner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::partner.partner",
+      "mappedBy": "partner_config"
     }
   }
 }

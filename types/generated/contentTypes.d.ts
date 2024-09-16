@@ -362,84 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiColorSchemaColorSchema extends Schema.CollectionType {
-  collectionName: 'color_schemas';
-  info: {
-    singularName: 'color-schema';
-    pluralName: 'color-schemas';
-    displayName: 'color-schema';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    font_family: Attribute.String;
-    bg_color: Attribute.String;
-    pertners_config: Attribute.Relation<
-      'api::color-schema.color-schema',
-      'oneToOne',
-      'api::partner-config.partner-config'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::color-schema.color-schema',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::color-schema.color-schema',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPartnerConfigPartnerConfig extends Schema.CollectionType {
-  collectionName: 'partner_configs';
-  info: {
-    singularName: 'partner-config';
-    pluralName: 'partner-configs';
-    displayName: 'pertners_configs';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    address: Attribute.String;
-    header_img: Attribute.String;
-    partner_id: Attribute.String;
-    is_active: Attribute.Boolean;
-    budget: Attribute.String;
-    color_schema: Attribute.Relation<
-      'api::partner-config.partner-config',
-      'oneToOne',
-      'api::color-schema.color-schema'
-    >;
-    avatar: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::partner-config.partner-config',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::partner-config.partner-config',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -668,6 +590,48 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginCustomApiCustomApi extends Schema.CollectionType {
+  collectionName: 'custom_apis';
+  info: {
+    singularName: 'custom-api';
+    pluralName: 'custom-apis';
+    displayName: 'Custom API';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'plugin::custom-api.custom-api', 'name'> &
+      Attribute.Required;
+    selectedContentType: Attribute.JSON;
+    structure: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::custom-api.custom-api',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::custom-api.custom-api',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -866,6 +830,221 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiAvailableLocalizationAvailableLocalization
+  extends Schema.CollectionType {
+  collectionName: 'available_localizations';
+  info: {
+    singularName: 'available-localization';
+    pluralName: 'available-localizations';
+    displayName: 'available_localization';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    key: Attribute.String & Attribute.Required;
+    value: Attribute.String;
+    htmlValue: Attribute.String;
+    parnter_localization: Attribute.Relation<
+      'api::available-localization.available-localization',
+      'oneToOne',
+      'api::parnter-localization.parnter-localization'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::available-localization.available-localization',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::available-localization.available-localization',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiColorSchemaColorSchema extends Schema.CollectionType {
+  collectionName: 'color_schemas';
+  info: {
+    singularName: 'color-schema';
+    pluralName: 'color-schemas';
+    displayName: 'color-schema';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    font_family: Attribute.String;
+    bg_color: Attribute.String;
+    pertner_config: Attribute.Relation<
+      'api::color-schema.color-schema',
+      'oneToOne',
+      'api::partner-config.partner-config'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::color-schema.color-schema',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::color-schema.color-schema',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiParnterLocalizationParnterLocalization
+  extends Schema.CollectionType {
+  collectionName: 'parnter_localizations';
+  info: {
+    singularName: 'parnter-localization';
+    pluralName: 'parnter-localizations';
+    displayName: 'parnter-localization';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    locale: Attribute.Relation<
+      'api::parnter-localization.parnter-localization',
+      'oneToOne',
+      'api::available-localization.available-localization'
+    >;
+    content: Attribute.JSON;
+    partner: Attribute.Relation<
+      'api::parnter-localization.parnter-localization',
+      'oneToOne',
+      'api::partner.partner'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::parnter-localization.parnter-localization',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::parnter-localization.parnter-localization',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPartnerPartner extends Schema.CollectionType {
+  collectionName: 'partners';
+  info: {
+    singularName: 'partner';
+    pluralName: 'partners';
+    displayName: 'partner';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    partner_id: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    partner_config: Attribute.Relation<
+      'api::partner.partner',
+      'oneToOne',
+      'api::partner-config.partner-config'
+    >;
+    parnter_localization: Attribute.Relation<
+      'api::partner.partner',
+      'oneToOne',
+      'api::parnter-localization.parnter-localization'
+    >;
+    admin_users: Attribute.Relation<
+      'api::partner.partner',
+      'oneToMany',
+      'admin::user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::partner.partner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::partner.partner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPartnerConfigPartnerConfig extends Schema.CollectionType {
+  collectionName: 'partner_configs';
+  info: {
+    singularName: 'partner-config';
+    pluralName: 'partner-configs';
+    displayName: 'pertner_configs';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Attribute.String;
+    header_img: Attribute.String;
+    is_active: Attribute.Boolean;
+    budget: Attribute.String;
+    avatar: Attribute.String;
+    available_localizations: Attribute.Relation<
+      'api::partner-config.partner-config',
+      'oneToMany',
+      'api::available-localization.available-localization'
+    >;
+    color_schema: Attribute.Relation<
+      'api::partner-config.partner-config',
+      'oneToOne',
+      'api::color-schema.color-schema'
+    >;
+    partner: Attribute.Relation<
+      'api::partner-config.partner-config',
+      'oneToOne',
+      'api::partner.partner'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::partner-config.partner-config',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::partner-config.partner-config',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -876,16 +1055,20 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::color-schema.color-schema': ApiColorSchemaColorSchema;
-      'api::partner-config.partner-config': ApiPartnerConfigPartnerConfig;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::custom-api.custom-api': PluginCustomApiCustomApi;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::available-localization.available-localization': ApiAvailableLocalizationAvailableLocalization;
+      'api::color-schema.color-schema': ApiColorSchemaColorSchema;
+      'api::parnter-localization.parnter-localization': ApiParnterLocalizationParnterLocalization;
+      'api::partner.partner': ApiPartnerPartner;
+      'api::partner-config.partner-config': ApiPartnerConfigPartnerConfig;
     }
   }
 }

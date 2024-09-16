@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parnter_localizations",
+  "info": {
+    "singularName": "parnter-localization",
+    "pluralName": "parnter-localizations",
+    "displayName": "parnter-localization",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "locale": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::available-localization.available-localization",
+      "inversedBy": "parnter_localization"
+    },
+    "content": {
+      "type": "json"
+    },
+    "partner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::partner.partner",
+      "mappedBy": "parnter_localization"
+    }
+  }
+}
