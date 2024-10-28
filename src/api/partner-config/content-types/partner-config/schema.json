@@ -4,7 +4,7 @@
   "info": {
     "singularName": "partner-config",
     "pluralName": "partner-configs",
-    "displayName": "pertner_configs",
+    "displayName": "pertner_config",
     "description": ""
   },
   "options": {
@@ -43,6 +43,21 @@
       "relation": "oneToOne",
       "target": "api::partner.partner",
       "mappedBy": "partner_config"
+    },
+    "parnter_localization": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::parnter-localization.parnter-localization"
+    },
+    "pertner_logo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

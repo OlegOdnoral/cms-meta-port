@@ -27,14 +27,19 @@
     },
     "parnter_localization": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::parnter-localization.parnter-localization",
-      "inversedBy": "partner"
+      "relation": "oneToMany",
+      "target": "api::parnter-localization.parnter-localization"
     },
     "admin_users": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "admin::user"
+    },
+    "parnter_localization_content": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::parnter-localization.parnter-localization",
+      "mappedBy": "parnter_localization"
     }
   }
 }

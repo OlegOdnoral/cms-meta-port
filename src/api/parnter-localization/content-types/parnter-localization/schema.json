@@ -21,11 +21,11 @@
     "content": {
       "type": "json"
     },
-    "partner": {
+    "parnter_localization": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::partner.partner",
-      "mappedBy": "parnter_localization"
+      "inversedBy": "parnter_localization_content"
     }
   }
 }

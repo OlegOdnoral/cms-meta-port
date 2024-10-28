@@ -925,7 +925,7 @@ export interface ApiParnterLocalizationParnterLocalization
       'api::available-localization.available-localization'
     >;
     content: Attribute.JSON;
-    partner: Attribute.Relation<
+    parnter_localization: Attribute.Relation<
       'api::parnter-localization.parnter-localization',
       'oneToOne',
       'api::partner.partner'
@@ -969,13 +969,18 @@ export interface ApiPartnerPartner extends Schema.CollectionType {
     >;
     parnter_localization: Attribute.Relation<
       'api::partner.partner',
-      'oneToOne',
+      'oneToMany',
       'api::parnter-localization.parnter-localization'
     >;
     admin_users: Attribute.Relation<
       'api::partner.partner',
       'oneToMany',
       'admin::user'
+    >;
+    parnter_localization_content: Attribute.Relation<
+      'api::partner.partner',
+      'oneToOne',
+      'api::parnter-localization.parnter-localization'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1000,7 +1005,7 @@ export interface ApiPartnerConfigPartnerConfig extends Schema.CollectionType {
   info: {
     singularName: 'partner-config';
     pluralName: 'partner-configs';
-    displayName: 'pertner_configs';
+    displayName: 'pertner_config';
     description: '';
   };
   options: {
@@ -1027,6 +1032,12 @@ export interface ApiPartnerConfigPartnerConfig extends Schema.CollectionType {
       'oneToOne',
       'api::partner.partner'
     >;
+    parnter_localization: Attribute.Relation<
+      'api::partner-config.partner-config',
+      'oneToMany',
+      'api::parnter-localization.parnter-localization'
+    >;
+    pertner_logo: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
