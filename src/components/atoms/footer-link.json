@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_atoms_footer_links",
+  "info": {
+    "displayName": "Footer_link",
+    "icon": "link"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

@@ -40,6 +40,16 @@
       "relation": "oneToOne",
       "target": "api::parnter-localization.parnter-localization",
       "mappedBy": "parnter_localization"
+    },
+    "footer_config": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::footer-config.footer-config"
+    },
+    "legal_content": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::legal-content.legal-content"
     }
   }
 }

@@ -50,14 +50,20 @@
       "target": "api::parnter-localization.parnter-localization"
     },
     "pertner_logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "footer_config": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::footer-config.footer-config"
     }
   }
 }

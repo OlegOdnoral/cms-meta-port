@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "footer_configs",
+  "info": {
+    "singularName": "footer-config",
+    "pluralName": "footer-configs",
+    "displayName": "Footer_config",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "partner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::partner.partner"
+    },
+    "logos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "atoms.logo-element"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "atoms.footer-link"
+    }
+  }
+}

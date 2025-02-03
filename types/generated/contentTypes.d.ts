@@ -439,6 +439,74 @@ export interface ApiColorSchemaColorSchema extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiFooterConfigFooterConfig
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'footer_configs';
+  info: {
+    description: '';
+    displayName: 'Footer_config';
+    pluralName: 'footer-configs';
+    singularName: 'footer-config';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    links: Schema.Attribute.Component<'atoms.footer-link', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::footer-config.footer-config'
+    > &
+      Schema.Attribute.Private;
+    logos: Schema.Attribute.Component<'atoms.logo-element', true>;
+    partner: Schema.Attribute.Relation<'oneToOne', 'api::partner.partner'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiLegalContentLegalContent
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'legal_contents';
+  info: {
+    description: '';
+    displayName: 'legal-content';
+    pluralName: 'legal-contents';
+    singularName: 'legal-content';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    available_localization: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::available-localization.available-localization'
+    >;
+    content: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::legal-content.legal-content'
+    > &
+      Schema.Attribute.Private;
+    page_name: Schema.Attribute.String;
+    partner: Schema.Attribute.Relation<'oneToOne', 'api::partner.partner'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiParnterLocalizationParnterLocalization
   extends Struct.CollectionTypeSchema {
   collectionName: 'parnter_localizations';
@@ -500,6 +568,10 @@ export interface ApiPartnerConfigPartnerConfig
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    footer_config: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::footer-config.footer-config'
+    >;
     header_img: Schema.Attribute.String;
     is_active: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -540,6 +612,14 @@ export interface ApiPartnerPartner extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
+    footer_config: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::footer-config.footer-config'
+    >;
+    legal_content: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::legal-content.legal-content'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1077,6 +1157,8 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::available-localization.available-localization': ApiAvailableLocalizationAvailableLocalization;
       'api::color-schema.color-schema': ApiColorSchemaColorSchema;
+      'api::footer-config.footer-config': ApiFooterConfigFooterConfig;
+      'api::legal-content.legal-content': ApiLegalContentLegalContent;
       'api::parnter-localization.parnter-localization': ApiParnterLocalizationParnterLocalization;
       'api::partner-config.partner-config': ApiPartnerConfigPartnerConfig;
       'api::partner.partner': ApiPartnerPartner;
