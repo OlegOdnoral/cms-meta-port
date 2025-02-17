@@ -471,6 +471,38 @@ export interface ApiFooterConfigFooterConfig
   };
 }
 
+export interface ApiHelpCenterContentHelpCenterContent
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'help_center_contents';
+  info: {
+    description: '';
+    displayName: 'help_center_content';
+    pluralName: 'help-center-contents';
+    singularName: 'help-center-content';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    json_content: Schema.Attribute.JSON;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::help-center-content.help-center-content'
+    > &
+      Schema.Attribute.Private;
+    partner: Schema.Attribute.Relation<'oneToOne', 'api::partner.partner'>;
+    publishedAt: Schema.Attribute.DateTime;
+    test_field: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiLegalContentLegalContent
   extends Struct.CollectionTypeSchema {
   collectionName: 'legal_contents';
@@ -615,6 +647,10 @@ export interface ApiPartnerPartner extends Struct.CollectionTypeSchema {
     footer_config: Schema.Attribute.Relation<
       'oneToOne',
       'api::footer-config.footer-config'
+    >;
+    help_center_content: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::help-center-content.help-center-content'
     >;
     legal_content: Schema.Attribute.Relation<
       'oneToMany',
@@ -1158,6 +1194,7 @@ declare module '@strapi/strapi' {
       'api::available-localization.available-localization': ApiAvailableLocalizationAvailableLocalization;
       'api::color-schema.color-schema': ApiColorSchemaColorSchema;
       'api::footer-config.footer-config': ApiFooterConfigFooterConfig;
+      'api::help-center-content.help-center-content': ApiHelpCenterContentHelpCenterContent;
       'api::legal-content.legal-content': ApiLegalContentLegalContent;
       'api::parnter-localization.parnter-localization': ApiParnterLocalizationParnterLocalization;
       'api::partner-config.partner-config': ApiPartnerConfigPartnerConfig;

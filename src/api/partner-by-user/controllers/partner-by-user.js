@@ -60,7 +60,8 @@ module.exports = {
           ...{parnter_localization: {populate: ['locale']}},
           ...{partner_config: { populate: true }},
           ...{footer_config: { populate: true }},
-          ...{footer_content: { populate: true }}
+          ...{footer_content: { populate: true }},
+          ...{help_center_content: { populate: false }}
         },
         where: {admin_users: {$in: [user.id],}}
       })

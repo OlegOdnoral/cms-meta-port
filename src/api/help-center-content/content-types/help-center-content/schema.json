@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "help_center_contents",
+  "info": {
+    "singularName": "help-center-content",
+    "pluralName": "help-center-contents",
+    "displayName": "help_center_content",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "json_content": {
+      "type": "json"
+    },
+    "partner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::partner.partner",
+      "inversedBy": "help_center_content"
+    },
+    "test_field": {
+      "type": "text"
+    }
+  }
+}

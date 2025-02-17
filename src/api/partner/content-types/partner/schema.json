@@ -50,6 +50,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::legal-content.legal-content"
+    },
+    "help_center_content": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::help-center-content.help-center-content",
+      "mappedBy": "partner"
     }
   }
 }
